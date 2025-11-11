@@ -7,42 +7,105 @@
   <meta name="description" content="Ankit Sinha — PhD student and AI researcher in HCI, Computer Vision, AR/VR, and Graph ML. Teaching-minded, research-driven." />
   <meta name="author" content="Ankit Sinha" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* ===== THEME ===== */
     :root{
-      --bg:#0b0c10; --panel:#111317; --text:#ecf1f3; --muted:#b6c2c9; --brand:#64d6ff; --accent:#a2ff9b;
-      --chip:#1a1f26; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --bg: #070a12;          /* page background */
+      --bg-2: #0b1220;        /* panel background */
+      --glass: rgba(255,255,255,.06);
+      --text: #eaf2ff;
+      --muted: #a6b3c5;
+      --brand: #7cd2ff;       /* cyan */
+      --brand-2: #a8ffbf;     /* green */
+      --accent: #b19dff;      /* violet */
+      --chip: rgba(255,255,255,.08);
+      --border: 1px solid rgba(255,255,255,.08);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius-xl: 20px;
+      --radius-lg: 16px;
     }
     @media (prefers-color-scheme: light){
-      :root{ --bg:#fafcff; --panel:#ffffff; --text:#111827; --muted:#4b5563; --chip:#eef2f7; --shadow:0 10px 30px rgba(2,6,23,.06);} 
+      :root{ --bg:#f8fbff; --bg-2:#ffffff; --glass:rgba(2,6,23,.04); --text:#0a1020; --muted:#495a73; --chip:rgba(2,6,23,.05); --border:1px solid rgba(2,6,23,.08); --shadow:0 20px 60px rgba(10,16,32,.06);} 
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    header{display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+
+    /* ===== BACKGROUND EFFECTS ===== */
+    .bg-wrap{position:fixed;inset:0;z-index:-1;overflow:hidden}
+    .gradients{
+      position:absolute;inset:-20% -10% -10% -20%;
+      background:
+        radial-gradient(40% 40% at 10% 10%, rgba(124,210,255,.18), transparent 60%),
+        radial-gradient(35% 35% at 90% 20%, rgba(168,255,191,.14), transparent 60%),
+        radial-gradient(50% 50% at 50% 100%, rgba(177,157,255,.12), transparent 60%);
+      filter: blur(60px);
+      animation: float 28s ease-in-out infinite alternate;
+    }
+    @keyframes float{ 0%{transform:translate3d(0,0,0)} 100%{transform:translate3d(0,-40px,0)} }
+
+    .grid-overlay{
+      position:absolute;inset:0;
+      background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+      opacity:.18;
+    }
+
+    /* ===== LAYOUT ===== */
+    .wrap{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+
+    /* ===== BRAND / HERO ===== */
     .brand{display:flex;align-items:center;gap:16px}
-    .avatar{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow)}
-    h1{font-size:clamp(28px,4vw,40px);margin:0}
-    .role{color:var(--muted);margin-top:-2px}
+    .avatar{width:70px;height:70px;border-radius:18px;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--brand),var(--brand-2));position:relative}
+    .avatar:after{content:"";position:absolute;inset:3px;border-radius:15px;background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.02));backdrop-filter: blur(2px)}
+
+    h1{margin:0;font-size:clamp(34px,5vw,52px);line-height:1.05;letter-spacing:-.02em}
+    .gradient-text{background:linear-gradient(92deg,var(--brand),var(--accent) 55%,var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .role{color:var(--muted);margin-top:6px}
+
     nav{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--chip);color:var(--text);border:1px solid rgba(255,255,255,.08)}
-    .btn:hover{transform:translateY(-1px);transition:transform .15s ease}
-    main{margin-top:28px;display:grid;grid-template-columns:1fr;gap:24px}
-    @media (min-width:980px){ main{grid-template-columns:1.2fr .8fr} }
-    section{background:var(--panel);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
-    h2{margin:0 0 12px 0;font-size:22px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:var(--glass);color:var(--text);border:var(--border);box-shadow: var(--shadow);backdrop-filter: blur(8px)}
+    .btn:hover{transform:translateY(-2px);transition:transform .18s ease}
+
+    /* ===== MAIN SECTIONS ===== */
+    main{margin-top:30px;display:grid;grid-template-columns:1fr;gap:28px}
+    @media (min-width:980px){ main{grid-template-columns:1.1fr .9fr} }
+    section{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:var(--border);border-radius:var(--radius-xl);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    section:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(120deg, rgba(124,210,255,.45), rgba(177,157,255,.35), rgba(168,255,191,.35));-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite: xor;mask-composite: exclude;opacity:.4}
+
+    h2{margin:0 0 14px 0;font-size:22px;display:inline-flex;align-items:center;gap:10px}
+    h2 .dot{width:8px;height:8px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:0 0 18px rgba(124,210,255,.6)}
+
     .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{background:var(--chip);padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);font-size:13px}
+    .chip{background:var(--chip);padding:7px 11px;border-radius:999px;border:var(--border);font-size:13px}
+
     ul{margin:0;padding-left:18px}
     .grid{display:grid;gap:16px}
     .two{grid-template-columns:1fr}
     @media (min-width:720px){ .two{grid-template-columns:1fr 1fr} }
-    .item{padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
+    .item{padding:14px;border-radius:16px;border:var(--border);background:rgba(255,255,255,.03);transition:transform .18s ease, box-shadow .18s ease}
+    .item:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.25)}
     .meta{color:var(--muted);font-size:13px;margin-top:-6px}
-    footer{margin:34px 0 14px;color:var(--muted);text-align:center}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+    /* Fancy list bullets */
+    li{margin:6px 0}
+    li::marker{color:var(--brand)}
+
+    /* ===== EXTRA: HIGHLIGHTS STRIP ===== */
+    .highlights{display:flex;gap:12px;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:8px;border:var(--border);background:rgba(255,255,255,.05);padding:10px 12px;border-radius:14px;font-size:14px}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+
+    footer{margin:36px 0 14px;color:var(--muted);text-align:center}
+
+    /* ===== ANIMATE ON SCROLL (AOS-lite) ===== */
+    [data-fade]{opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .5s ease}
+    [data-fade].visible{opacity:1;transform:none}
   </style>
   <script type="application/ld+json">
   {
@@ -62,16 +125,22 @@
   </script>
 </head>
 <body>
+  <!-- background candy -->
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="gradients"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
   <div class="wrap">
     <header>
-      <div class="brand">
+      <div class="brand" data-fade>
         <div class="avatar" aria-hidden="true"></div>
         <div>
-          <h1>Ankit Sinha</h1>
+          <h1 class="gradient-text">Ankit Sinha</h1>
           <div class="role">AI Researcher • PhD (Data Science & Computing) @ FLAME University</div>
         </div>
       </div>
-      <nav aria-label="Primary">
+      <nav aria-label="Primary" data-fade>
         <a class="btn" href="mailto:ankit.sinha@flame.edu.in" rel="me">Email</a>
         <a class="btn" href="https://www.linkedin.com/in/ankit-sinha-016166215/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/ankitpiklu17" target="_blank" rel="noopener">GitHub</a>
@@ -79,10 +148,17 @@
       </nav>
     </header>
 
+    <!-- quick highlights -->
+    <section class="highlights" aria-label="Key highlights" data-fade>
+      <div class="badge"><span>🏆</span> Best Research Project — Data Science for Social Good</div>
+      <div class="badge mono">📚 HCI • CV • AR/VR • Graph ML</div>
+      <div class="badge"><span>🧑‍🏫</span> Teaching-focused mentor</div>
+    </section>
+
     <main>
       <!-- Left column -->
-      <section aria-labelledby="about">
-        <h2 id="about">About</h2>
+      <section aria-labelledby="about" data-fade>
+        <h2 id="about"><span class="dot"></span> About</h2>
         <p>
           I am a PhD student in Data Science and Artificial Intelligence with a strong passion for teaching, mentoring, and research.
           My work spans Computer Vision, Human–Computer Interaction, Augmented & Virtual Reality (AR/VR), and Graph Machine Learning.
@@ -98,8 +174,8 @@
         </div>
       </section>
 
-      <section aria-labelledby="experience">
-        <h2 id="experience">Experience</h2>
+      <section aria-labelledby="experience" data-fade>
+        <h2 id="experience"><span class="dot"></span> Experience</h2>
         <div class="grid two">
           <div class="item">
             <strong>AI Researcher</strong> — FLAME University, Pune
@@ -130,8 +206,8 @@
       </section>
 
       <!-- Right column -->
-      <section aria-labelledby="education">
-        <h2 id="education">Education</h2>
+      <section aria-labelledby="education" data-fade>
+        <h2 id="education"><span class="dot"></span> Education</h2>
         <div class="grid">
           <div class="item">
             <strong>PhD, Data Science & Computing</strong> — FLAME University, Pune
@@ -151,8 +227,8 @@
         </div>
       </section>
 
-      <section aria-labelledby="projects">
-        <h2 id="projects">Selected Projects</h2>
+      <section aria-labelledby="projects" data-fade>
+        <h2 id="projects"><span class="dot"></span> Selected Projects</h2>
         <div class="grid two">
           <div class="item">
             <strong>Face Recognition Using ML</strong>
@@ -182,8 +258,8 @@
         </div>
       </section>
 
-      <section aria-labelledby="skills">
-        <h2 id="skills">Skills</h2>
+      <section aria-labelledby="skills" data-fade>
+        <h2 id="skills"><span class="dot"></span> Skills</h2>
         <div class="chips">
           <span class="chip">Python</span>
           <span class="chip">R</span>
@@ -204,8 +280,8 @@
         </div>
       </section>
 
-      <section aria-labelledby="certs">
-        <h2 id="certs">Certifications & Workshops</h2>
+      <section aria-labelledby="certs" data-fade>
+        <h2 id="certs"><span class="dot"></span> Certifications & Workshops</h2>
         <ul>
           <li>Fuzzy Logic and Neural Networks — IIT Kharagpur (NPTEL)</li>
           <li>Computer Vision & Image Processing — IIT Guwahati (NPTEL)</li>
@@ -215,8 +291,8 @@
         </ul>
       </section>
 
-      <section aria-labelledby="contact" id="cv">
-        <h2 id="contact">Contact</h2>
+      <section aria-labelledby="contact" id="cv" data-fade>
+        <h2 id="contact"><span class="dot"></span> Contact</h2>
         <p>
           Pune, India • he/him • <a href="mailto:ankit.sinha@flame.edu.in">ankit.sinha@flame.edu.in</a><br/>
           Prefer email for collaborations in HCI, CV, AR/VR, and Graph ML.
@@ -233,10 +309,16 @@
   </div>
 
   <script>
-    // Year + quick helper to attach your CV later
+    // Year & CV link
     document.getElementById('year').textContent = new Date().getFullYear();
-    // Replace with your uploaded CV path once added to the repo (e.g., ./Ankit_Sinha_CV.pdf)
     document.getElementById('cvLink').setAttribute('href', './Ankit_Sinha_CV(1)-1.pdf');
+
+    // Minimal AOS (animate on scroll) without libs
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    },{ threshold:.12 });
+    document.querySelectorAll('[data-fade]').forEach(el=> io.observe(el));
   </script>
 </body>
 </html>
+
