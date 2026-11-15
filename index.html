@@ -1,336 +1,423 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ankit Sinha — AI Researcher</title>
-  <meta name="description" content="Ankit Sinha — PhD student and AI researcher in HCI, Computer Vision, AR/VR, and Graph ML. Teaching-minded, research-driven." />
-  <meta name="author" content="Ankit Sinha" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    /* ===== THEME ===== */
-    :root{
-      --bg: #070a12;          /* page background */
-      --bg-2: #0b1220;        /* panel background */
-      --glass: rgba(255,255,255,.06);
-      --text: #eaf2ff;
-      --muted: #a6b3c5;
-      --brand: #7cd2ff;       /* cyan */
-      --brand-2: #a8ffbf;     /* green */
-      --accent: #b19dff;      /* violet */
-      --chip: rgba(255,255,255,.08);
-      --border: 1px solid rgba(255,255,255,.08);
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --radius-xl: 20px;
-      --radius-lg: 16px;
-    }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#f8fbff; --bg-2:#ffffff; --glass:rgba(2,6,23,.04); --text:#0a1020; --muted:#495a73; --chip:rgba(2,6,23,.05); --border:1px solid rgba(2,6,23,.08); --shadow:0 20px 60px rgba(10,16,32,.06);} 
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
-    a{color:var(--brand);text-decoration:none}
-    a:hover{text-decoration:underline}
+    <title>Ankit Sinha | PhD Researcher</title>
 
-    /* ===== BACKGROUND EFFECTS ===== */
-    .bg-wrap{position:fixed;inset:0;z-index:-1;overflow:hidden}
-    .gradients{
-      position:absolute;inset:-20% -10% -10% -20%;
-      background:
-        radial-gradient(40% 40% at 10% 10%, rgba(124,210,255,.18), transparent 60%),
-        radial-gradient(35% 35% at 90% 20%, rgba(168,255,191,.14), transparent 60%),
-        radial-gradient(50% 50% at 50% 100%, rgba(177,157,255,.12), transparent 60%);
-      filter: blur(60px);
-      animation: float 28s ease-in-out infinite alternate;
-    }
-    @keyframes float{ 0%{transform:translate3d(0,0,0)} 100%{transform:translate3d(0,-40px,0)} }
+    <meta name="description"
+          content="Ankit Sinha — PhD Researcher in Computer Vision, Human-Centered AI and Extended Reality.">
 
-    .grid-overlay{
-      position:absolute;inset:0;
-      background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-      opacity:.18;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    /* ===== LAYOUT ===== */
-    .wrap{max-width:1100px;margin:0 auto;padding:28px}
-    header{display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap"
+          rel="stylesheet">
 
-    /* ===== BRAND / HERO ===== */
-    .brand{display:flex;align-items:center;gap:16px}
-    .avatar{width:70px;height:70px;border-radius:18px;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--brand),var(--brand-2));position:relative}
-    .avatar:after{content:"";position:absolute;inset:3px;border-radius:15px;background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.02));backdrop-filter: blur(2px)}
-
-    h1{margin:0;font-size:clamp(34px,5vw,52px);line-height:1.05;letter-spacing:-.02em}
-    .gradient-text{background:linear-gradient(92deg,var(--brand),var(--accent) 55%,var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .role{color:var(--muted);margin-top:6px}
-
-    nav{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:var(--glass);color:var(--text);border:var(--border);box-shadow: var(--shadow);backdrop-filter: blur(8px)}
-    .btn:hover{transform:translateY(-2px);transition:transform .18s ease}
-
-    /* ===== MAIN SECTIONS ===== */
-    main{margin-top:30px;display:grid;grid-template-columns:1fr;gap:28px}
-    @media (min-width:980px){ main{grid-template-columns:1.1fr .9fr} }
-    section{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:var(--border);border-radius:var(--radius-xl);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-    section:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(120deg, rgba(124,210,255,.45), rgba(177,157,255,.35), rgba(168,255,191,.35));-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite: xor;mask-composite: exclude;opacity:.4}
-
-    h2{margin:0 0 14px 0;font-size:22px;display:inline-flex;align-items:center;gap:10px}
-    h2 .dot{width:8px;height:8px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:0 0 18px rgba(124,210,255,.6)}
-
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{background:var(--chip);padding:7px 11px;border-radius:999px;border:var(--border);font-size:13px}
-
-    ul{margin:0;padding-left:18px}
-    .grid{display:grid;gap:16px}
-    .two{grid-template-columns:1fr}
-    @media (min-width:720px){ .two{grid-template-columns:1fr 1fr} }
-    .item{padding:14px;border-radius:16px;border:var(--border);background:rgba(255,255,255,.03);transition:transform .18s ease, box-shadow .18s ease}
-    .item:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.25)}
-    .meta{color:var(--muted);font-size:13px;margin-top:-6px}
-
-    /* Fancy list bullets */
-    li{margin:6px 0}
-    li::marker{color:var(--brand)}
-
-    /* ===== EXTRA: HIGHLIGHTS STRIP ===== */
-    .highlights{display:flex;gap:12px;flex-wrap:wrap}
-    .badge{display:inline-flex;align-items:center;gap:8px;border:var(--border);background:rgba(255,255,255,.05);padding:10px 12px;border-radius:14px;font-size:14px}
-    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
-
-    footer{margin:36px 0 14px;color:var(--muted);text-align:center}
-
-    /* ===== ANIMATE ON SCROLL (AOS-lite) ===== */
-    [data-fade]{opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .5s ease}
-    [data-fade].visible{opacity:1;transform:none}
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Ankit Sinha",
-    "jobTitle": "AI Researcher, PhD Student",
-    "email": "mailto:ankit.sinha@flame.edu.in",
-    "url": "https://ankitpiklu17.github.io",
-    "sameAs": [
-      "https://www.linkedin.com/in/ankit-sinha-016166215/",
-      "https://github.com/ankitpiklu17"
-    ],
-    "affiliation": "FLAME University",
-    "knowsAbout": ["Computer Vision","Human–Computer Interaction","AR/VR","Graph Machine Learning","Data Science","Teaching"]
-  }
-  </script>
-  
-  <!-- One‑column layout overrides -->
-  <style>
-    .wrap{max-width:760px}
-    header{flex-direction:column;justify-content:center;text-align:center}
-    nav{justify-content:center}
-    main{display:grid;grid-template-columns:1fr !important}
-    @media (min-width:980px){ main{grid-template-columns:1fr !important} }
-    .two{grid-template-columns:1fr !important}
-    section{margin-bottom:24px}
-  </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- background candy -->
-  <div class="bg-wrap" aria-hidden="true">
-    <div class="gradients"></div>
-    <div class="grid-overlay"></div>
-  </div>
 
-  <div class="wrap">
-    <header>
-      <div class="brand" data-fade>
-        <div class="avatar" aria-hidden="true"></div>
-        <div>
-          <h1 class="gradient-text">Ankit Sinha</h1>
-          <div class="role">AI Researcher • PhD (Data Science & Computing) @ FLAME University</div>
-        </div>
-      </div>
-      <nav aria-label="Primary" data-fade>
-        <a class="btn" href="mailto:ankit.sinha@flame.edu.in" rel="me">Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/ankit-sinha-016166215/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/ankitpiklu17" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="#cv">CV</a>
-      </nav>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="site-header">
+        <nav class="nav container">
+
+            <a href="#home" class="nav-brand">Ankit Sinha</a>
+
+            <button class="nav-toggle" id="navToggle"
+                    aria-label="Toggle navigation">
+                ☰
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+                <a href="assets/Ankit_CV.pdf" target="_blank">CV ↗</a>
+            </div>
+
+        </nav>
     </header>
 
-    <!-- quick highlights -->
-    <section class="highlights" aria-label="Key highlights" data-fade>
-      <div class="badge"><span>🏆</span> Best Research Project — Data Science for Social Good</div>
-      <div class="badge mono">📚 HCI • CV • AR/VR • Graph ML</div>
-      <div class="badge"><span>🧑‍🏫</span> Teaching-focused mentor</div>
-    </section>
 
-    <main>
-      <!-- Left column -->
-      <section aria-labelledby="about" data-fade>
-        <h2 id="about"><span class="dot"></span> About</h2>
-        <p>
-          I am a PhD student in Data Science and Artificial Intelligence with a strong passion for teaching, mentoring, and research.
-          My work spans Computer Vision, Human–Computer Interaction, Augmented & Virtual Reality (AR/VR), and Graph Machine Learning.
-          I love applying data science to real-world problems while fostering learning and growth in others.
-        </p>
-        <div class="chips" aria-label="Key interests">
-          <span class="chip">Computer Vision</span>
-          <span class="chip">HCI</span>
-          <span class="chip">AR/VR</span>
-          <span class="chip">Graph ML</span>
-          <span class="chip">Teaching</span>
-          <span class="chip">Data Science</span>
-        </div>
-      </section>
+    <main class="container">
 
-      <section aria-labelledby="experience" data-fade>
-        <h2 id="experience"><span class="dot"></span> Experience</h2>
-        <div class="grid two">
-          <div class="item">
-            <strong>AI Researcher</strong> — FLAME University, Pune
-            <div class="meta">Jan 2025 – Present • Supervisor: Dr. Chiranjoy Chattopadhyay</div>
-            <ul>
-              <li>Unified framework for modeling temporal + structural dependencies in financial markets using dynamic financial knowledge graphs and spatio‑temporal GNNs.</li>
-              <li>Stock tasks: classification, regression, and recommendation with node/edge features from indicators, fundamentals, and news sentiment.</li>
-            </ul>
-          </div>
-          <div class="item">
-            <strong>Teaching Assistant (Mathematics, Statistics)</strong> — Mission Physics (Remote)
-            <div class="meta">Jan 2025 – Jul 2025</div>
-            <ul>
-              <li>Taught a full online minor: Linear Algebra, Probability, and Statistics with Python demos.</li>
-              <li>Focused on intuition, real‑world applications, and hands‑on problem solving.</li>
-            </ul>
-          </div>
-          <div class="item">
-            <strong>Summer Research Intern</strong> — FLAME University, Pune
-            <div class="meta">May 2024 – Jul 2024</div>
-            <ul>
-              <li>Graph ML on large‑scale migration data; EDA and trend analysis.</li>
-              <li>Used K‑Means, Hierarchical Clustering, GNNs; community detection (Louvain, Conductance).</li>
-              <li>Won “Best Research Project on Data Science for Social Good”.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
 
-      <!-- Right column -->
-      <section aria-labelledby="education" data-fade>
-        <h2 id="education"><span class="dot"></span> Education</h2>
-        <div class="grid">
-          <div class="item">
-            <strong>PhD, Data Science & Computing</strong> — FLAME University, Pune
-            <div class="meta">2023 – Present • Advisor: Dr. Chiranjoy Chattopadhyay</div>
-            <em>Thesis:</em> Advancing Human–Computer Interaction through Computer Vision for Adaptive AR/VR Environments.
-          </div>
-          <div class="item">
-            <strong>MS, Data Science & AI</strong> — RKMVERI, Howrah
-            <div class="meta">2023 – 2025 • Advisor: Dr. Chiranjoy Chattopadhyay</div>
-            <em>Thesis:</em> Modelling Financial Interdependencies with Graph‑Based Deep Learning for Stock Forecasting.
-          </div>
-          <div class="item">
-            <strong>BS, Mathematics (Hons)</strong> — Serampore College, Univ. of Calcutta
-            <div class="meta">2020 – 2023 • Advisor: Dr. Ranita Roy</div>
-            <em>Thesis:</em> Statistical Analysis of Car Price Data.
-          </div>
-        </div>
-      </section>
+            <div class="hero-copy">
 
-      <section aria-labelledby="projects" data-fade>
-        <h2 id="projects"><span class="dot"></span> Selected Projects</h2>
-        <div class="grid two">
-          <div class="item">
-            <strong>Face Recognition Using ML</strong>
-            <div class="meta">PCA + SVM • 94% accuracy</div>
-            <p>Built on a novel dataset of RKMVERI students; mentor: Dr. Soumitra Samanta.</p>
-          </div>
-          <div class="item">
-            <strong>Auto‑Summarization of Research Papers</strong>
-            <div class="meta">T5/BART/PEGASUS • +7% ROUGE over baseline</div>
-            <p>Fine‑tuned on PubMed; mentor: Dr. Soumitra Samanta.</p>
-          </div>
-          <div class="item">
-            <strong>Financial Network Community Detection</strong>
-            <div class="meta">Louvain • Conductance • Portfolio construction</div>
-            <p>Mapped market structure; built an equally‑weighted (non‑optimized) portfolio.</p>
-          </div>
-          <div class="item">
-            <strong>Survival Analysis with Frailty Models</strong>
-            <div class="meta">Bivariate current status • R simulations</div>
-            <p>Parametric analysis for clinical research; mentor: Dr. Sudipta Das.</p>
-          </div>
-          <div class="item">
-            <strong>Superstore Sales Forecasting</strong>
-            <div class="meta">ARIMA • SARIMA • Prophet</div>
-            <p>Forecasting for inventory planning; feature engineering and seasonality insights.</p>
-          </div>
-        </div>
-      </section>
+                <p class="eyebrow">PhD Researcher · FLAME University</p>
 
-      <section aria-labelledby="skills" data-fade>
-        <h2 id="skills"><span class="dot"></span> Skills</h2>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">R</span>
-          <span class="chip">C</span>
-          <span class="chip">Power BI</span>
-          <span class="chip">Neo4j</span>
-          <span class="chip">SQL</span>
-          <span class="chip">NumPy</span>
-          <span class="chip">Pandas</span>
-          <span class="chip">scikit‑learn</span>
-          <span class="chip">PyTorch</span>
-          <span class="chip">TensorFlow</span>
-          <span class="chip">NetworkX</span>
-          <span class="chip">Matplotlib</span>
-          <span class="chip">English</span>
-          <span class="chip">Hindi</span>
-          <span class="chip">Bengali</span>
-        </div>
-      </section>
+                <h1>Ankit <span>Sinha</span></h1>
 
-      <section aria-labelledby="certs" data-fade>
-        <h2 id="certs"><span class="dot"></span> Certifications & Workshops</h2>
-        <ul>
-          <li>Fuzzy Logic and Neural Networks — IIT Kharagpur (NPTEL)</li>
-          <li>Computer Vision & Image Processing — IIT Guwahati (NPTEL)</li>
-          <li>NBHM‑sponsored MTTS Camp (2021)</li>
-          <li>Python & Intro to ML, University of Calcutta (2022)</li>
-          <li>Summer School Fellow, TIFR (2022)</li>
-        </ul>
-      </section>
+                <p class="hero-role">
+                    Computer Vision | Human-Centered AI | Extended Reality
+                </p>
 
-      <section aria-labelledby="contact" id="cv" data-fade>
-        <h2 id="contact"><span class="dot"></span> Contact</h2>
-        <p>
-          Pune, India • he/him • <a href="mailto:ankit.sinha@flame.edu.in">ankit.sinha@flame.edu.in</a><br/>
-          Prefer email for collaborations in HCI, CV, AR/VR, and Graph ML.
-        </p>
-        <p>
-          CV: <a href="#" id="cvLink" download>Download (PDF)</a>
-        </p>
-      </section>
+                <p class="intro">
+                    I am a PhD researcher at FLAME University, working at
+                    the intersection of Computer Vision, Human-Centered
+                    Artificial Intelligence, and Extended Reality.
+
+                    My research explores intelligent visual understanding,
+                    multimodal learning, and immersive human-computer
+                    interaction, with a particular interest in music technology.
+                </p>
+
+                <div class="hero-links">
+                    <a href="mailto:ankit.sinha@flame.edu.in">Email</a>
+
+                    <a href="https://github.com/ankitpiklu17"
+                       target="_blank">GitHub ↗</a>
+
+                    <a href="https://www.linkedin.com/in/ankit-sinha-016166215/"
+                       target="_blank">LinkedIn ↗</a>
+                </div>
+
+            </div>
+
+            <div class="hero-photo-wrap">
+                <img src="images/profile.jpg"
+                     alt="Ankit Sinha"
+                     class="profile-photo">
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+
+            <div class="section-heading">
+                <p class="eyebrow">Introduction</p>
+                <h2>About Me</h2>
+            </div>
+
+            <div class="prose">
+                <p>
+                    My research interests lie in developing intelligent
+                    systems that connect visual perception, machine learning,
+                    and human interaction.
+
+                    I am particularly interested in Document Image Analysis,
+                    Optical Music Recognition (OMR), multimodal learning,
+                    and collaborative Extended Reality experiences.
+                </p>
+
+                <p>
+                    I also explore how AI-enabled tools can support learning
+                    and creative activities, including music learning in
+                    virtual environments.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- RESEARCH INTERESTS -->
+        <section class="section" id="research">
+
+            <div class="section-heading">
+                <p class="eyebrow">What I study</p>
+                <h2>Research Interests</h2>
+            </div>
+
+            <div class="tag-list">
+                <span>Computer Vision</span>
+                <span>Optical Music Recognition</span>
+                <span>Document Image Analysis</span>
+                <span>Extended Reality</span>
+                <span>Human-Centered AI</span>
+                <span>Multimodal Learning</span>
+                <span>Generative Models</span>
+                <span>Human-Computer Interaction</span>
+            </div>
+
+        </section>
+
+
+        <!-- PUBLICATIONS -->
+        <section class="section" id="publications">
+
+            <div class="section-heading">
+                <p class="eyebrow">Research output</p>
+                <h2>Publications</h2>
+            </div>
+
+            <article class="publication">
+
+                <div class="publication-year">2026</div>
+
+                <div>
+                    <h3>
+                        Multi-Modal Heterogeneous Music Notation Recognition
+                        from Documents: Framework for Real-Time
+                        Symbolic-to-Immersive Mapping
+                    </h3>
+
+                    <p class="publication-meta">
+                        ICDAR 2026 · Accepted
+                    </p>
+
+                    <p>
+                        Research on heterogeneous music notation recognition
+                        and mapping symbolic music representations to
+                        immersive experiences.
+                    </p>
+
+                    <div class="text-links">
+                        <a href="#">Paper PDF</a>
+                        <a href="#">Code</a>
+                        <a href="#">Project</a>
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- RESEARCH PROJECTS -->
+        <section class="section" id="projects">
+
+            <div class="section-heading">
+                <p class="eyebrow">Selected work</p>
+                <h2>Research Projects</h2>
+            </div>
+
+            <div class="project-list">
+
+                <article class="project">
+                    <div class="project-number">01</div>
+
+                    <div>
+                        <h3>AdaScore-RL</h3>
+
+                        <p class="project-meta">
+                            Reinforcement Learning · Document Image Analysis · OMR
+                        </p>
+
+                        <p>
+                            An adaptive preprocessing framework that uses
+                            reinforcement learning to improve music notation
+                            recognition in degraded score images.
+                        </p>
+
+                        <a href="#">Project / Code</a>
+                    </div>
+                </article>
+
+
+                <article class="project">
+                    <div class="project-number">02</div>
+
+                    <div>
+                        <h3>SWARA Percussion Dataset</h3>
+
+                        <p class="project-meta">
+                            Dataset · Music Notation · Symbol Detection
+                        </p>
+
+                        <p>
+                            A percussion-focused sheet music dataset with
+                            image-level and symbol-level annotations.
+                        </p>
+
+                        <a href="#">Dataset / Paper</a>
+                    </div>
+                </article>
+
+
+                <article class="project">
+                    <div class="project-number">03</div>
+
+                    <div>
+                        <h3>PianoVAM Research</h3>
+
+                        <p class="project-meta">
+                            Multimodal Learning · Music Performance · Computer Vision
+                        </p>
+
+                        <p>
+                            Research using synchronized audio, video, MIDI,
+                            hand-skeleton, and fingering information for
+                            piano performance analysis.
+                        </p>
+
+                        <a href="#">Project / Code</a>
+                    </div>
+                </article>
+
+
+                <article class="project">
+                    <div class="project-number">04</div>
+
+                    <div>
+                        <h3>Collaborative Extended Reality Experiences</h3>
+
+                        <p class="project-meta">
+                            Extended Reality · Human-Computer Interaction
+                        </p>
+
+                        <p>
+                            Research investigating collaborative experiences,
+                            interaction techniques, and human-centered design
+                            in extended reality.
+                        </p>
+
+                        <a href="#">Project</a>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- EDUCATION -->
+        <section class="section" id="education">
+
+            <div class="section-heading">
+                <p class="eyebrow">Academic background</p>
+                <h2>Education</h2>
+            </div>
+
+            <div class="timeline">
+
+                <article class="timeline-item">
+                    <div class="timeline-date">Aug 2025 – Present</div>
+
+                    <div>
+                        <h3>PhD in Computer Vision and Human-Centered AI</h3>
+
+                        <p class="timeline-place">
+                            FLAME University
+                        </p>
+
+                        <p>
+                            School of Computing and Data Sciences
+                        </p>
+                    </div>
+                </article>
+
+
+                <article class="timeline-item">
+                    <div class="timeline-date">Jul 2023 – Jun 2025</div>
+
+                    <div>
+                        <h3>M.S. in Data Science</h3>
+
+                        <p class="timeline-place">
+                            Add your university name
+                        </p>
+                    </div>
+                </article>
+
+
+                <article class="timeline-item">
+                    <div class="timeline-date">Aug 2020 – Jun 2023</div>
+
+                    <div>
+                        <h3>B.S. in Mathematics</h3>
+
+                        <p class="timeline-place">
+                            Add your college name
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACADEMIC ACTIVITIES -->
+        <section class="section" id="academic">
+
+            <div class="section-heading">
+                <p class="eyebrow">Beyond research</p>
+                <h2>Academic Activities</h2>
+            </div>
+
+            <div class="simple-grid">
+
+                <article class="simple-card">
+                    <h3>Teaching</h3>
+                    <p>
+                        Teaching mathematical foundations, including
+                        differential equations and related topics.
+                    </p>
+                </article>
+
+                <article class="simple-card">
+                    <h3>Conferences</h3>
+                    <p>
+                        ICDAR 2026 — accepted paper.
+                        Add presentation details here.
+                    </p>
+                </article>
+
+                <article class="simple-card">
+                    <h3>Open Research</h3>
+                    <p>
+                        Sharing reproducible research, datasets,
+                        annotation tools, and code.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+        <section class="section contact-section" id="contact">
+
+            <div class="section-heading">
+                <p class="eyebrow">Get in touch</p>
+                <h2>Contact</h2>
+            </div>
+
+            <p>
+                I welcome research discussions and collaborations
+                related to Computer Vision, Music Technology,
+                Extended Reality, and Human-Centered AI.
+            </p>
+
+            <a class="email-link"
+               href="mailto:ankit.sinha@flame.edu.in">
+                ankit.sinha@flame.edu.in
+            </a>
+
+            <div class="contact-links">
+                <a href="https://github.com/ankitpiklu17">GitHub</a>
+                <a href="https://www.linkedin.com/in/ankit-sinha-016166215/">LinkedIn</a>
+                <a href="assets/Ankit_CV.pdf">Download CV</a>
+            </div>
+
+        </section>
+
     </main>
 
-    <footer>
-      © <span id="year"></span> Ankit Sinha · Built with vanilla HTML/CSS on GitHub Pages.
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>© <span id="year"></span> Ankit Sinha</span>
+            <span>Built with HTML, CSS and JavaScript.</span>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    // Year & CV link
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('cvLink').setAttribute('href', './Ankit_Sinha_CV(1)-1.pdf');
 
-    // Minimal AOS (animate on scroll) without libs
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
-    },{ threshold:.12 });
-    document.querySelectorAll('[data-fade]').forEach(el=> io.observe(el));
-  </script>
+    <script src="js/script.js"></script>
+
 </body>
 </html>
-
-
